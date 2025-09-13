@@ -36,7 +36,7 @@ import "tinymce/plugins/quickbars"
 import "tinymce/plugins/save" // 保存
 import "tinymce/plugins/searchreplace" //查询替换
 import "tinymce/plugins/table" // 插入表格插件
-import "tinymce/plugins/template" //插入模板
+// import "tinymce/plugins/template" //插入模板
 import "tinymce/plugins/visualblocks"
 import "tinymce/plugins/visualchars"
 import "tinymce/plugins/wordcount" // 字数统计插件
