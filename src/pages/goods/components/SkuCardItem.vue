@@ -1,0 +1,44 @@
+<!-- 规格值 -->
+
+<template>
+    <div class="flex gap-2" v-loading="loading">
+        <el-tag v-for="(tag, index) in item.goodsSkusCardValue" :key="index" closable :disable-transitions="false"
+            @close="handleClose(tag)" effect="plain">
+            <!--$event,tag拿到修改之后的值和当前对象  -->
+            <el-input v-model="tag.text" class="w-20 ml-[-10px]" placeholder="选项值" size="small"
+                @change="handleChange($event, tag)">
+            </el-input>
+        </el-tag>
+        <el-input v-if="inputVisible" ref="InputRef" v-model="inputValue" class="w-20" size="small"
+            @keyup.enter="handleInputConfirm" @blur="handleInputConfirm" />
+        <el-button v-else class="button-new-tag" size="small" @click="showInput">
+            + 添加选项值
+        </el-button>
+    </div>
+</template>
+
+<script setup>
+import {
+    initSkuCardItem
+} from "~/composables/useSku.js"
+
+const props = defineProps({
+    SkuCardId: [Number, String]
+})
+
+const {
+    item,
+    inputValue,
+    inputVisible,
+    InputRef,
+    handleClose,
+    showInput,
+    handleInputConfirm,
+    loading,
+    handleChange
+} = initSkuCardItem(props.SkuCardId);
+
+
+</script>
+
+<style></style>
