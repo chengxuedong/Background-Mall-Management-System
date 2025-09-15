@@ -135,8 +135,8 @@ const submit = () => {
 </script>
 
 <style>
-    .choose-image-btn {
-        margin-left: 5px;
-        margin-top: -17px;
-    }
+.choose-image-btn {
+    margin-left: 5px;
+    margin-top: -17px;
+}
 </style>

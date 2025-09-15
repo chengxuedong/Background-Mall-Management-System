@@ -54,11 +54,12 @@ const {
 
 <style>
     .f-tag-list {
-        @apply fixed bg-gray-100 flex items-center px-2;
+        @apply fixed  flex items-center px-2;
         top: 65px;
         right: 0;
         height: 60px;
         z-index: 100;
+        background-color: #e4eeff
     }
 
     .tag-btn {

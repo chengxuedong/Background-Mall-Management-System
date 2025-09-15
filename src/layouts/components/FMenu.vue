@@ -67,6 +67,7 @@ const handleSelect = (e) => {
 </script>
 <style>
 .f-menu {
+    background-color: #e4eeff63;
     top: 64px;
     bottom:0;
     left: 0;
@@ -74,7 +75,15 @@ const handleSelect = (e) => {
     overflow-y: auto;
     overflow-x: hidden;
     transition: all .2s;
-    @apply shadow-md fixed bg-light-50;
+    @apply shadow-md fixed ;
+}
+
+.el-menu {
+    background-color: #e4eeff63;
+}
+
+.el-menu-item:hover,.el-sub-menu__title:hover {
+    color: #7db5ed;
 }
 /* 隐藏滚动条 */
 .f-menu::-webkit-scrollbar {

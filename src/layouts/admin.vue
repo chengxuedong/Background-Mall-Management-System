@@ -41,6 +41,7 @@
 </script>
 
 <style>
+
 /* 防止受el-aside动态宽度和transition一闪一闪的 */
     .el-aside {
         transition: all .2s;
@@ -77,3 +78,4 @@
         transition-delay: 0.3s;
     }
 </style>
+
