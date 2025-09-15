@@ -7,7 +7,7 @@
     <el-col :lg="16" :md="12" class="left-box">
       <div>
         <div>欢迎光临</div>
-        <div>此站点是《vue3+vite实战商城后台开发》视频课程的演示地址</div>
+        <div>此站点是《vue3+vite实战商城后台开发》演示地址</div>
         <div>
          账号：admin&nbsp;&nbsp;&nbsp;&nbsp;密码：admin
         </div>
@@ -112,7 +112,6 @@ const onSubmit = () => {
 
     loading.value = true;
 
-  //dispatch专门调用store里面action的方法的
     userStore.login(form).then(res => {
       toast("登录成功");
       router.push("/");

@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import { login, getinfo } from '../api/manager'
+import { login as loginApi, getinfo as getinfoApi } from '../api/manager'
 import { removeToken, setToken } from '../composables/auth'
 
 // ref()<->state computed()<->getters function()<->actions
@@ -15,7 +15,7 @@ export const useUserStore = defineStore('user', () => {
   
     async function login({ username, password }) {
             try {
-                const res = await login(username, password)
+                const res = await loginApi(username, password)
                 setToken(res.token)
                 return res
             } catch (err) {
@@ -23,11 +23,11 @@ export const useUserStore = defineStore('user', () => {
             }
     }
     async function getinfo() {
-            try {
-                const res = await getinfo()
-                this.user = res
-                this.menus = res.menus
-                this.ruleNames = res.ruleNames
+        try {
+                const res = await getinfoApi()
+                user.value = res
+                menus.value = res.menus
+                ruleNames.value = res.ruleNames
                 return res
             } catch (err) {
                 throw err

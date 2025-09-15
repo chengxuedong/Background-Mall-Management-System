@@ -8,7 +8,8 @@ import { router } from './router'//"等同于./router/index.js"，router接收in
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'  //引入所有图标
 import { createPinia } from 'pinia'
 import permission from './directives/permission'
-
+//very important
+import './permission'
 const app = createApp(App)
 const pinia = createPinia();
 app.use(pinia)

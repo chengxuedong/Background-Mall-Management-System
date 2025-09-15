@@ -1,5 +1,5 @@
 <template>
-    <div class="f-menu" :style="{width:$store.state.asideWidth}">
+    <div class="f-menu" :style="{width:userStore.asideWidth}">
         <!-- default-active默认激活菜单的index,当刷新前已经点开侧边栏的子菜单了，这个可以让刷新后保留激活菜单
              collapse是否水平折叠收起菜单（仅在 mode 为 vertical 时可用） 
              unique-opened 只能展开一个子菜单 collapse-transition动画效果-->
