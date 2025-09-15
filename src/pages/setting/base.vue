@@ -1,5 +1,5 @@
 <template>
-    <div v-loading="loading" class="bg-white p-4 rounded">
+    <div v-loading="loading" class="bg-white p-4 rounded min-h-[600px]">
         <el-form :model="form" label-width="160px" class="hand settingForm">
             <el-tabs v-model="activeName">
                 <el-tab-pane label="注册与访问" name="first">
@@ -73,7 +73,7 @@
                 <el-tab-pane label="Api安全" name="third">
                     <el-form-item label="是否开启API安全">
                         <div>
-                             <el-radio-group v-model="form.api_safe">
+                            <el-radio-group v-model="form.api_safe">
                                 <el-radio :label="0" border>
                                     关闭
                                 </el-radio>
@@ -82,15 +82,15 @@
                                 </el-radio>
                             </el-radio-group>
                             <small class="text-gray-500 flex mt-1">api安全功能开启之后调用前端api需要传输签名串</small>
-                        </div>   
+                        </div>
                     </el-form-item>
                     <el-form-item label="秘钥">
                         <div>
-                             <el-input v-model="form.api_secret" placeholder="秘钥" style="width: 30%;"
-                            type="number"></el-input>
+                            <el-input v-model="form.api_secret" placeholder="秘钥" style="width: 30%;"
+                                type="number"></el-input>
                             <small
-                            class="text-gray-500 flex mt-1">秘钥设置关系系统中api调用传输签名串的编码规则，以及会员token解析，请慎重设置，注意设置之后对应会员要求重新登录获取token</small>
-                        </div>   
+                                class="text-gray-500 flex mt-1">秘钥设置关系系统中api调用传输签名串的编码规则，以及会员token解析，请慎重设置，注意设置之后对应会员要求重新登录获取token</small>
+                        </div>
                     </el-form-item>
                 </el-tab-pane>
             </el-tabs>

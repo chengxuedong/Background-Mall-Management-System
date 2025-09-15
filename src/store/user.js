@@ -36,9 +36,9 @@ export const useUserStore = defineStore('user', () => {
     
     async function logout() {
             removeToken()
-            this.user = {}
-            this.menus = []
-            this.ruleNames = []
+            // this.user = {}
+            // this.menus = []
+            // this.ruleNames = []ba
     }
     
     function handleAsideWidth() {

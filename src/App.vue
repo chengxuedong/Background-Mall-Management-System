@@ -11,7 +11,7 @@ console.log(import.meta.env);
 <style>
 
 body {
-  @apply bg-gray-100;
+  background-color: #f3f7ff;
 }
 
 #nprogress .bar {

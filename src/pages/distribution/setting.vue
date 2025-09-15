@@ -1,5 +1,5 @@
 <template>
-    <div v-loading="loading" class="bg-white p-4 rounded">
+    <div v-loading="loading" class="bg-white p-4 rounded" >
         <el-form :model="form" label-width="160px" class="settingForm">
             <h5 class="bg-gray-100 p-3 rounded mb-5">基础设置</h5>
             <el-form-item label="分销启用">

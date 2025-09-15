@@ -4,7 +4,7 @@
 //md:≥992px lg:≥1200px
 <template>
   <el-row class="login-container">
-    <el-col :lg="16" :md="12" class="left-box">
+    <el-col :lg="16" :md="16" class="left-box">
       <div>
         <div>欢迎光临</div>
         <div>此站点是《vue3+vite实战商城后台开发》演示地址</div>
@@ -12,8 +12,62 @@
           账号：admin&nbsp;&nbsp;&nbsp;&nbsp;密码：admin
         </div>
       </div>
+      <div class="wrapper">
+        <!-- 茶包 -->
+        <div class="teabag">
+          <!-- 茶包顶部 -->
+          <div class="teabag-top"></div>
+          <!-- 茶包身体 -->
+          <div class="teabag-body">
+            <div class="teabag-content">
+              <div class="teabag-eyes eyes">
+                <div class="teabag-eye eye"></div>
+                <div class="teabag-eye eye"></div>
+              </div>
+              <div class="teabag-mouth"></div>
+            </div>
+          </div>
+          <!-- 茶包孔 -->
+          <div class="teabag-pores">
+            <span class="teabag-pore"></span>
+            <span class="teabag-pore"></span>
+            <span class="teabag-pore"></span>
+            <span class="teabag-pore"></span>
+            <span class="teabag-pore"></span>
+            <span class="teabag-pore"></span>
+            <span class="teabag-pore"></span>
+            <span class="teabag-pore"></span>
+            <span class="teabag-pore"></span>
+            <span class="teabag-pore"></span>
+            <span class="teabag-pore"></span>
+            <span class="teabag-pore"></span>
+            <span class="teabag-pore"></span>
+            <span class="teabag-pore"></span>
+          </div>
+        </div>
+        <!-- 茶杯 -->
+        <div class="cup">
+          <!-- 杯子 -->
+          <div class="cup-body">
+            <div class="cup-eyes eyes">
+              <div class="cup-eye eye"></div>
+              <div class="cup-eye eye"></div>
+            </div>
+            <div class="cup-mouth">
+              <div class="cup-tongue"></div>
+            </div>
+          </div>
+          <!-- 杯柄 -->
+          <div class="cup-handle"></div>
+          <!-- 杯碟 -->
+          <div class="cup-saucer">
+            <div class="cup-saucer-top"></div>
+            <div class="cup-saucer-bottom"></div>
+          </div>
+        </div>
+      </div>
     </el-col>
-    <el-col :lg="8" :md="12" class="right-box">
+    <el-col :lg="8" :md="8" class="right-box">
       <h2 class="title">欢迎回来</h2>
       <div>
         <span class="line"></span>
@@ -48,9 +102,9 @@
     </el-col>
   </el-row>
 </template>
-
 <script setup>
 //进入页面渲染之后调用onMounted，页面卸载之前调用onBeforeUnmount
+import './tea.css'
 import { ref, reactive, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '../store/user';
@@ -141,7 +195,6 @@ const bubleCreate = () => {
 
 setInterval(bubleCreate, 500);
 </script>
-
 <style>
 
  @keyframes myMove {
@@ -226,4 +279,9 @@ setInterval(bubleCreate, 500);
   @apply h-[1px] w-16 bg-gray-200;
 }
 
+@media screen and (max-width: 700px) {
+  .wrapper {
+    display: none;
+  }
+}
 </style>

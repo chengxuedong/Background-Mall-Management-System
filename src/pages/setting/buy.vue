@@ -26,8 +26,7 @@
                 <el-tab-pane label="购物设置" name="second">
                     <el-form-item label="未支付订单">
                         <div>
-                            <el-input v-model="form.close_order_minute" placeholder="未支付订单" 
-                                type="number">
+                            <el-input v-model="form.close_order_minute" placeholder="未支付订单" type="number">
                                 <template #append>
                                     <div>
                                         分钟后自动关闭
@@ -39,8 +38,7 @@
                     </el-form-item>
                     <el-form-item label="已发货订单">
                         <div>
-                            <el-input v-model="form.auto_received_day" placeholder="已发货订单" 
-                                type="number">
+                            <el-input v-model="form.auto_received_day" placeholder="已发货订单" type="number">
                                 <template #append>
                                     <div>
                                         天后自动确认收货
@@ -52,8 +50,7 @@
                     </el-form-item>
                     <el-form-item label="已完成订单">
                         <div>
-                            <el-input v-model="form.after_sale_day" placeholder="已完成订单" 
-                                type="number">
+                            <el-input v-model="form.after_sale_day" placeholder="已完成订单" type="number">
                                 <template #append>
                                     <div>
                                         天内允许申请售后
