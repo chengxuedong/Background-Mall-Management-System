@@ -53,13 +53,13 @@
 //进入页面渲染之后调用onMounted，页面卸载之前调用onBeforeUnmount
 import { ref, reactive,onMounted,onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
-import { useStore } from 'vuex'
+import { useUserStore } from '../store/user';
 import { toast } from '../composables/util'
 //ref, reactive是响应式api，通过value才能拿到值
 //reactive是专门用来定义引用类型的数据比如对象，不能用于普通类型
 // import { User, Lock } from '@element-plus/icons-vue'   局部引入图标
 const router = useRouter();//拿到router之后才能调用push方法跳转到首页
-const store = useStore();
+const userStore = useUserStore();
 
 
 const form = reactive({
@@ -113,7 +113,7 @@ const onSubmit = () => {
     loading.value = true;
 
   //dispatch专门调用store里面action的方法的
-    store.dispatch("login", form).then(res => {
+    userStore.login(form).then(res => {
       toast("登录成功");
       router.push("/");
     }).finally(() => {

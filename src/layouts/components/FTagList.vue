@@ -1,5 +1,5 @@
 <template>
-    <div class="f-tag-list" :style="{left:$store.state.asideWidth}">
+    <div class="f-tag-list" :style="{left:userStore.asideWidth}">
             <el-tabs
         v-model="activeTab"
         type="card"
@@ -41,6 +41,8 @@
 
 <script setup>
 import { useTabList } from '~/composables/useTabList';
+import { useUserStore } from '~/store/user';
+const userStore = useUserStore();
 const {
     activeTab,
     tabList,

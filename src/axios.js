@@ -1,9 +1,11 @@
 import { getToken } from "./composables/auth";
 import axios from "axios";
 import { toast } from './composables/util';
-import store from './store'
-
-
+//在组件外部的普通JS文件中调用了useUserStore()，
+// 但此时 Pinia 还没有被挂载到应用实例上,引发了报错
+//解决办法：把useUserStore的调用放到拦截器里
+import { useUserStore } from './store/user'
+// const userStore = useUserStore();
 const service = axios.create({
     baseURL: import.meta.env.VITE_APP_BASE_API//根域名，所有路径的前缀
 });
@@ -28,12 +30,13 @@ service.interceptors.request.use(function (config) {
 // 添加响应拦截器,拦截所有通过service实例发送的请求的响应，并对响应数据进行统一处理，而不是每个接口都做某事
 service.interceptors.response.use(function (response) {
     // 对响应数据做点什么  如果请求类型是要导出下载数据的,返回response.data
- 
+
     return response.request.responseType == "blob" ? response.data : response.data.data;
 }, function (error) {
     const msg = error.response.data.msg || "请求失败";
     if (msg == "非法token，请先登录！") {
-        store.dispatch("logout").finally(() => {
+        const userStore = useUserStore();
+        userStore.logout().finally(() => {
             location.reload();
         });
     }

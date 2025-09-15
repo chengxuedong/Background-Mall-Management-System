@@ -1,16 +1,15 @@
 import { ref, reactive } from 'vue'
-import {logout,updatepassword } from '../api/manager'
-import { showModal,toast } from './util';
+import { logout, updatepassword } from '../api/manager'
+import { showModal, toast } from './util';
 import { useRouter } from 'vue-router';
-import { useStore } from 'vuex'
-
+import { useUserStore } from '../store/user'
 
 
 
 export function useRepassword() {
     //修改密码
     const router = useRouter();
-    const store = useStore();
+    const userStore = useUserStore();
     const formDrawerRef = ref(null)
     const form = reactive({
         oldpassword: "",
@@ -56,7 +55,7 @@ export function useRepassword() {
                 .then(res => {
                     toast("修改密码成功,请重新登录");
                     //清除当前用户状态vuex
-                    store.dispatch("logout");
+                    userStore.logout();
                     //跳转回登录页
                     router.push("/login");
                 }).finally(() => {
@@ -76,13 +75,13 @@ export function useRepassword() {
 
 export function useLogout() {
     const router = useRouter();
-    const store = useStore();
+    const userStore = useUserStore();
     function handleLogout() {
         showModal("是否要退出登录？").then(res => {
             logout()
                 .finally(() => {
                     //清除当前用户状态vuex
-                    store.dispatch("logout");
+                    userStore.logout();
                     //跳转回登录页
                     router.push("/login");
                     //提示退出登录成功

@@ -5,7 +5,7 @@
         </el-header>
         <el-container>
             <!-- 让el-main里面的内容因为el-aside布局变化而变化 -->
-           <el-aside :width="$store.state.asideWidth">
+           <el-aside :width="userStore.asideWidth">
                 <f-menu/>
            </el-aside>
            <el-main>
@@ -36,6 +36,8 @@
     import fHeader from './components/fHeader.vue';
     import FMenu from './components/FMenu.vue';
     import FTagList from './components/FTagList.vue';
+    import { useUserStore } from '../store/user'
+    const userStore = useUserStore()
 </script>
 
 <style>

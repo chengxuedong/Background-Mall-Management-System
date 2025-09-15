@@ -4,8 +4,8 @@
             <el-icon class="mr-1"><ElemeFilled /></el-icon>
             帝莎编程
         </span>
-        <el-icon class="icon-btn" @click="$store.commit('handleAsideWidth')">
-            <Fold v-if="$store.state.asideWidth=='250px'"/>
+        <el-icon class="icon-btn" @click="userStore.handleAsideWidth()">
+            <Fold v-if="userStore.asideWidth=='250px'"/>
             <Expand v-else/>
         </el-icon>
         <el-tooltip
@@ -31,8 +31,8 @@
            
             <el-dropdown class="dropdown" @command="handleCommand">
                 <span class="flex items-center text-light-50">
-                    <el-avatar class="mr-2" :size="25" :src="$store.state.user.avatar" />
-                    {{$store.state.user.username}}
+                    <el-avatar class="mr-2" :size="25" :src="userStore.user.avatar" />
+                    {{userStore.user.username}}
                     <el-icon class="el-icon--right">
                         <arrow-down />
                     </el-icon>
@@ -73,6 +73,9 @@ import { useLogout } from '../../composables/useManager';
 import FormDrawer from '../../components/FormDrawer.vue';
 import { useFullscreen } from '@vueuse/core'
 import { useRepassword } from '../../composables/useManager';
+// 引入 Pinia 的用户 store
+import { useUserStore } from '../../store/user'
+const userStore = useUserStore()    
 // toggle进入全屏退出全屏切换状态
 const { isFullscreen, toggle } = useFullscreen()
 const {

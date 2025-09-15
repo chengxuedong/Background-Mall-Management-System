@@ -2,7 +2,9 @@
 import { addRoutes, router } from './router'
 import { getToken } from "./composables/auth";
 import { toast, showFullLoading, hideFullLoading } from "./composables/util";
-import store from "./store";
+import {useUserStore} from "./store/user";
+
+// const userStore = useUserStore();
 //全局前置守卫
 // to.path目标路径from.path当前路径
 //反正重复性调用getInfo,导致页面加载慢
@@ -28,10 +30,10 @@ router.beforeEach(async (to, from, next) => {
     //解决获取到的用户信息刷新后没有了
     //如果用户登陆了，自动获取用户信息，存储在vuex的user当中
     let hasNewRoutes = false;
-    console.log("~~hasGetInfo=", hasGetInfo)
     if (token && !hasGetInfo) {
+        const userStore = useUserStore();
         //因为resolve把拿到的信息传回这里
-        let { menus } = await store.dispatch("getinfo");
+        let { menus } = await userStore.getinfo();
         hasGetInfo = true;
         //拿到token,动态添加路由
         console.log("~~menus=", menus)

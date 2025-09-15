@@ -46,9 +46,9 @@
 // 需要跳转用router
 import { useRouter, useRoute,onBeforeRouteUpdate } from 'vue-router';
 import { computed, ref } from 'vue';
-import { useStore} from 'vuex';
+import { useUserStore } from '../../store/user';
 const router = useRouter();
-const store = useStore();
+const userStore = useUserStore();
 const route = useRoute();
 //默认选中
 const defaultActive = ref(route.path);
@@ -57,9 +57,9 @@ onBeforeRouteUpdate((to,from) => {
     defaultActive.value = to.path;
 })
 //是否折叠
-const isCollapse=computed(()=>!(store.state.asideWidth=="250px"))
+const isCollapse=computed(()=>!(userStore.asideWidth=="250px"))
 
-const asideMenus = computed(() => store.state.menus)
+const asideMenus = computed(() => userStore.menus)
 
 const handleSelect = (e) => {
     router.push(e);
