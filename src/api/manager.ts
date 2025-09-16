@@ -2,7 +2,7 @@ import axios from "~/axios";
 import { queryParams } from "../composables/util";
 //管理员
 //axios.post(请求地址,需要传的数据),返回一个promise
-export function login(username, password)
+export function login(username:string, password:string)
 {
     return axios.post("/admin/login",{
             username,
@@ -21,27 +21,27 @@ export function logout() {
 }
 
 //修改密码
-export function updatepassword(data) {
+export function updatepassword(data:any) {
     return axios.post("/admin/updatepassword",data)
 }
 
-export function getManagerList(page, query = {})
+export function getManagerList(page:number, query = {})
 {
     let r = queryParams(query)
     //拼接后 ? limit = 10 & keyword=ceshi
     return axios.get(`/admin/manager/${page}${r}`)
 }
 
-export function updateManagerStatus(id,status) {
+export function updateManagerStatus(id:number,status:number) {
     return axios.post(`/admin/manager/${id}/update_status`,{status})
 }
-export function createManager(data) {
+export function createManager(data:any) {
     return axios.post(`/admin/manager`,data)
 }
-export function updateManager(id, data) {
+export function updateManager(id:number, data:any) {
     return axios.post(`/admin/manager/${id}`, data)
 }
-export function deleteManager(id) {
+export function deleteManager(id:number) {
     return axios.post(`/admin/manager/${id}/delete`)
 }
 

@@ -4,7 +4,7 @@ import nprogress from 'nprogress';
 //消息提示
 //dangerouslyUseHTMLString:是否将message属性作为HTML片段处理
 //type="success"=type没有传值默认成功提示
-export function toast(message, type = "success", dangerouslyUseHTMLString = true) {
+export function toast(message: string, type = "success", dangerouslyUseHTMLString = true) {
     ElNotification({
         message,//<=>message:message
         type,

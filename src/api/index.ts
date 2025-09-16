@@ -11,6 +11,6 @@ export function getStatistics2() {
     return axios.get("/admin/statistics2")
 }
 //IndexChart
-export function getStatistics3(type) {
+export function getStatistics3(type:string) {
     return axios.get("/admin/statistics3?type="+type)
 }
