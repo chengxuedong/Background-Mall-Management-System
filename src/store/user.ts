@@ -48,7 +48,7 @@ export const useUserStore = defineStore('user', () => {
         try {
             const res = await loginApi(form.username, form.password)
             // axios 拦截器已返回 data，这里直接取 token
-            const token = res.data.token
+            const token = (res as any).token
             setToken(token)
             return { token }
         } catch (err) {
@@ -64,7 +64,6 @@ export const useUserStore = defineStore('user', () => {
             user.value = res as unknown as User;
             menus.value = menusData
             ruleNames.value = ruleNamesData
-            console.log(user.value,menus.value,ruleNames.value)
             return res as unknown as GetInfoRes;
         } catch (err) {
             throw err
