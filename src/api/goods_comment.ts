@@ -1,4 +1,4 @@
-import axios from "../axios";
+import axios from "~/axios";
 import { queryParams } from "../composables/util";
 
 //商品评论

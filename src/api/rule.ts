@@ -17,7 +17,7 @@ export function updateRuleStatus(id:number,status:number) {
     return axios.post(`/admin/rule/${id}/update_status`,{status})
 }
 
-export function deleteRule(id) {
+export function deleteRule(id:number) {
     return axios.post(`/admin/rule/${id}/delete`)
 }
 

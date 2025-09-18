@@ -1,10 +1,9 @@
 import { ref } from 'vue'
-import { useRoute,useRouter,onBeforeRouteUpdate } from 'vue-router'
-import { useCookies } from "@vueuse/integrations/useCookies";
+import { useRoute, useRouter, onBeforeRouteUpdate } from 'vue-router'
+import { useCookies } from '@vueuse/integrations/useCookies'
 
-export function useTabList()
-{
-    const route = useRoute();
+export function useTabList() {
+    const route = useRoute()
     const router = useRouter();
     const cookie = useCookies();
     const activeTab = ref(route.path)
@@ -16,12 +15,12 @@ export function useTabList()
     ])
 
 
-    const removeTab = (t) => {
+    const removeTab = (t:string) => {
         let tabs = tabList.value;
         let a = activeTab.value;
         // 如果删除的标签是当前激活的标签
         if (a == t) {
-            tabs.forEach((tab, index) => {
+            tabs.forEach((tab:any, index:number) => {
                 // 检查当前遍历到的标签路径是否与要删除的标签路径匹配。
                 if (tab.path == t) {
                     const nextTab = tabs[index + 1] || tabs[index - 1];
@@ -32,7 +31,7 @@ export function useTabList()
             })
         }
         activeTab.value = a;
-        tabList.value = tabList.value.filter(tab => tab.path != t)
+        tabList.value = tabList.value.filter((tab:any) => tab.path != t)
         cookie.set("tabList", tabList.value);
     }
 
@@ -51,8 +50,8 @@ export function useTabList()
 
     //添加标签导航
     //使用 findIndex 方法检查当前标签列表 tabList.value 中是否已经存在路径为 tab.path 的标签
-    const addTab = (tab) => {
-        let noTab = tabList.value.findIndex(t => t.path == tab.path) == -1;
+    const addTab = (tab:any) => {
+        let noTab = tabList.value.findIndex((t:any) => t.path == tab.path) == -1;
         if (noTab) {
             tabList.value.push(tab);
         }
@@ -60,12 +59,12 @@ export function useTabList()
     }
 
     //选中激活的导航菜单项可以切换相应的页面
-    const changeTab = (t) => {
+    const changeTab = (t:string) => {
         activeTab.value = t;
         router.push(t);
     }
 
-    onBeforeRouteUpdate((to, from) => {
+    onBeforeRouteUpdate((to:any, from:any) => {
         activeTab.value = to.path;
         addTab({
             title: to.meta.title,
@@ -73,7 +72,7 @@ export function useTabList()
         })
     })
 
-    const handleClose = (c) => {
+    const handleClose = (c:string) => {
         if (c == "clearAll") {
             //切换回首页
             activeTab.value = "/";
@@ -84,7 +83,7 @@ export function useTabList()
             }]
         } else if (c == "clearOther") {
             //过滤只剩下首页和当前激活
-            tabList.value = tabList.value.filter(tab => tab.path == "/" || tab.path == activeTab.value)
+            tabList.value = tabList.value.filter((tab:any) => tab.path == "/" || tab.path == activeTab.value)
         }
         cookie.set("tabList", tabList.value);
     }

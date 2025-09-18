@@ -4,13 +4,22 @@ import { showModal, toast } from './util';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '../store/user'
 
+// 为组件 ref 定义最小接口
+interface FormDrawerExpose {
+    open: () => void
+    showLoading: () => void
+    hideLoading: () => void
+}
 
+interface ElFormExpose {
+    validate: (cb: (valid: boolean) => void) => void
+}
 
 export function useRepassword() {
     //修改密码
     const router = useRouter();
     const userStore = useUserStore();
-    const formDrawerRef = ref(null)
+    const formDrawerRef = ref<FormDrawerExpose | null>(null)
     const form = reactive({
         oldpassword: "",
         password: "",
@@ -41,28 +50,35 @@ export function useRepassword() {
             },
         ],
     })
-    const formRef = ref(null);//拿到el-form节点
+    const formRef = ref<ElFormExpose | null>(null); // 拿到el-form节点
 
-    const openRePasswordForm = () => formDrawerRef.value.open();
+    const openRePasswordForm = () => {
+        if (formDrawerRef.value && typeof formDrawerRef.value.open === 'function') {
+            formDrawerRef.value.open();
+        }
+    };
 
     const onSubmit = () => {
-        //验证结果true或false
-        formRef.value.validate((valid) => {
-            if (!valid)
-                return false
-            formDrawerRef.value.showLoading();
-            updatepassword(form)
-                .then(res => {
-                    toast("修改密码成功,请重新登录");
-                    //清除当前用户状态vuex
-                    userStore.logout();
-                    //跳转回登录页
-                    router.push("/login");
-                }).finally(() => {
-                    formDrawerRef.value.hideLoading();
-                })
-        })
+        // 验证结果true或false
+        if (formRef.value && typeof formRef.value.validate === 'function') {
+            formRef.value.validate((valid: boolean) => {
+                if (!valid)
+                    return false
+                formDrawerRef.value && formDrawerRef.value.showLoading();
+                updatepassword(form)
+                    .then(res => {
+                        toast("修改密码成功,请重新登录");
+                        //清除当前用户状态vuex
+                        userStore.logout();
+                        //跳转回登录页
+                        router.push("/login");
+                    }).finally(() => {
+                        formDrawerRef.value && formDrawerRef.value.hideLoading();
+                    })
+            })
+        }
     }
+
     return {
         formDrawerRef,
         form,
@@ -93,6 +109,4 @@ export function useLogout() {
         handleLogout
     }
 }
-
-
 

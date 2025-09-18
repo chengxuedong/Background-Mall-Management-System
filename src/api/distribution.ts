@@ -1,5 +1,5 @@
 // 分销模块
-import axios from "../axios";
+import axios from "~/axios";
 import { queryParams } from "../composables/util";
 
 export function getAgentStatus()

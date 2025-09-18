@@ -1,4 +1,4 @@
-import axios from "../axios";
+import axios from "~/axios";
 // 商品分类列表
 export function getCategoryList()
 {

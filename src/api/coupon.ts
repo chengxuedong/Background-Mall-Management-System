@@ -1,4 +1,4 @@
-import axios from "../axios";
+import axios from "~/axios";
 //优惠卷
 export function getCouponList(page:number)
 {
